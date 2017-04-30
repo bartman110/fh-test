@@ -1,0 +1,21 @@
+.main-header{
+
+
+  .connected-user-title{
+    font-size: 18px;
+
+    @include tablet{
+      float: left;
+    }
+
+  }
+
+  .meta-nav{
+    font-size: 18px;
+
+
+    @include tablet{
+      float: right;
+    }
+  }
+}

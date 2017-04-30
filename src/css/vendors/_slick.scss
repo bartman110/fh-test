@@ -1,0 +1,14 @@
+@import "./node_modules/slick-carousel/slick/slick.scss";
+
+.slick-arrow{
+  background: transparent;
+  min-width: 70px;
+  border: none;
+  &:hover{
+    cursor: pointer;
+  }
+  &:active,
+  &:focus{
+    outline: 0;
+  }
+}

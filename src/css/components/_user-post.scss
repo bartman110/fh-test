@@ -1,0 +1,54 @@
+.post-comments{
+  display: none;
+  margin: 30px 0;
+
+  &.visible{
+    display: block;
+  }
+
+  h3{
+    padding: 0 0 20px;
+
+    border-bottom: 1px solid silver;
+
+  }
+
+  .comment{
+    font-size: 14px;
+
+    padding: 20px 0;
+    border-bottom: 1px solid silver;
+
+    h5{
+      font-weight: 700;
+    }
+  }
+}
+
+.add-comment{
+  display: none;
+
+  &.visible{
+    display: block;
+  }
+}
+
+.success-post-comment{
+    display: none;
+    color: $success;
+
+    &.visible{
+      display: block;
+    }
+}
+
+.message{
+  .help{
+    display: none;
+  }
+  .message-body{
+    a{
+      text-decoration: none;
+    }
+  }
+}

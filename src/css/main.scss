@@ -1,0 +1,20 @@
+@import "./node_modules/bulma/bulma.sass";
+
+/* vendors */
+@import "vendors/slick";
+
+ /* base */
+@import './base/variables';
+
+/* Layout */
+@import "./layout/layout";
+
+/* Componenets */
+@import './components/user-login';
+@import './components/user-gallery';
+@import './components/users-list';
+@import './components/user-post';
+@import './components/header';
+
+
+@import './utils/modal';

@@ -1,50 +1,68 @@
-var gulp = require('gulp');
-var $ = require('gulp-load-plugins')();
+const gulp        = require('gulp');
 var browserSync = require('browser-sync').create();
-var sourcemaps = require('gulp-sourcemaps');
 
-//
-// var javascriptPath = [ 'bower_components/foundation-sites/' ];
-//
-// var sassPaths = [
-//   'bower_components/foundation-sites/scss',
-//   'bower_components/motion-ui/src'
-// ];
-//
-// gulp.task('browser-sync', function() {
-//     browserSync.init({
-//         proxy: "artiglow.dev"
-//     });
-// });
-//
-//
-// gulp.task('sass', function() {
-//   return gulp.src('scss/styleguide.scss')
-//     .pipe(sourcemaps.init())
-//       .pipe($.sass({
-//             includePaths: sassPaths,
-//             outputStyle: 'compressed'
-//     })
-//       .on('error', $.sass.logError))
-//     .pipe($.autoprefixer({
-//       browsers: ['last 2 versions', 'ie >= 9']
-//     }))
-//     .pipe(sourcemaps.write())
-//     .pipe(gulp.dest('css'))
-//     .pipe(rename('app.css'))
-//     .pipe(gulp.dest('../css'))
-//     .pipe(browserSync.stream());
-// });
-//
-//
-// gulp.task('default', ['sass'], function() {
-//
-//     browserSync.init({
-//         server: "./"
-//     });
-//
-//     gulp.watch(['scss/**/*.scss'], ['sass']);
-//     gulp.watch(['bower_components/**/*.scss'], ['sass']);
-//     gulp.watch(".html").on('change', browserSync.reload);
-//
-// });
+const browserify  = require('browserify');
+const babelify    = require('babelify');
+const source      = require('vinyl-source-stream');
+const buffer      = require('vinyl-buffer');
+const uglify      = require('gulp-uglify');
+const sourcemaps  = require('gulp-sourcemaps');
+const livereload  = require('gulp-livereload');
+
+const sass  = require('gulp-sass');
+
+
+/* DEV */
+// browserify, then uglify js
+gulp.task('buildJs', function () {
+    // app.js is your main JS file with all your module inclusions
+    return browserify({entries: './src/js/main.js', debug: true})
+        .transform("babelify", { presets: ["es2015"] })
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init())
+        .pipe(sourcemaps.write(''))
+        .pipe(gulp.dest('./dist/js'))
+        .pipe(browserSync.stream());
+});
+
+//compile sass to css
+gulp.task('buildCss', function () {
+    return gulp.src('./src/css/**/*.scss')
+        .pipe(sass().on('error', sass.logError))
+        .pipe(gulp.dest('./dist/css/'))
+        .pipe(browserSync.stream());
+});
+
+// Static Server + watching scss/html files
+gulp.task('serve', ['buildCss', 'buildJs'], function() {
+
+    browserSync.init({
+        server: "./"
+    });
+    gulp.watch(['./src/js/**/*.js', './src/css/**/*.scss'], ['buildJs', 'buildCss']);
+});
+
+/* PROD */
+gulp.task('buildJsProd', function () {
+    // app.js is your main JS file with all your module inclusions
+    return browserify({entries: './src/js/main.js', debug: true})
+        .transform("babelify", { presets: ["es2015"] })
+        .bundle()
+        .pipe(source('main.js'))
+        .pipe(buffer())
+        .pipe(sourcemaps.init())
+        .pipe(uglify())
+        .pipe(sourcemaps.write(''))
+        .pipe(gulp.dest('./dist/js'));
+});
+gulp.task('buildCssProd', function () {
+    return gulp.src('./src/css/**/*.scss')
+        .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+        .pipe(gulp.dest('./dist/css/'))
+        .pipe(browserSync.stream());
+});
+
+gulp.task('default', ['serve']);
+gulp.task('prod', ['buildJsProd','buildCssProd']);

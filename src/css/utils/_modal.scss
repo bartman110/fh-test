@@ -1,0 +1,10 @@
+.modal-card-title{
+  flex-shrink: initial;
+}
+
+.photo-modal{
+    display: none;
+    &.visible{
+        display: flex;
+    }
+}

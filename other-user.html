@@ -1,0 +1,136 @@
+<!doctype html>
+<html class="no-js" lang="">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Flight hub test - other users</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="shortcut icon" href="http://www.flighthub.com/favicon.ico">
+    <meta property="og:image" content="http://www.flighthub.com/images/facebook-thumb.png">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/6.0.0/normalize.min.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="dist/css/main.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+
+</head>
+<body>
+
+<div class="modal user-login-modal">
+
+    <div class="modal-background"></div>
+
+    <div class="modal-card">
+
+        <header class="modal-card-head">
+
+            <p class="modal-card-title">Enter your username to log in:</p>
+
+        </header>
+
+        <section class="modal-card-body">
+
+            <div class="field">
+
+                <label class="label" for="username-login">Username:</label>
+
+                <p class="control has-icons-left">
+
+                    <input type="text" class="input" id="username-login" placeholder="Username">
+
+                    <span class="icon is-small is-left">
+
+                            <i class="fa fa-user"></i>
+
+                        </span>
+
+                </p>
+                <p class="help is-danger user-login-error-field">This email is invalid</p>
+
+            </div>
+
+        </section>
+
+        <footer class="modal-card-foot">
+
+            <a class="button is-success login-button">Log in</a>
+
+        </footer>
+
+    </div>
+
+</div>
+
+<div class="user-login container">
+
+
+    <section class="section main-header">
+
+        <div class="container">
+
+            <div class="heading">
+
+                <p class="connected-user-title">Welcome <span class="user-title-username"></span></p>
+                <nav class="meta-nav">
+                    <a href="/"  class="">Home</a>
+                    <span> | </span>
+                    <a class="logout-link">Logout</a>
+                </nav>
+
+
+            </div>
+        </div>
+
+    </section>
+
+    <section class="section">
+
+        <div class="heading">
+
+            <h2 class="title connected-user-title">Here are <span class="other-user-title-username"></span> latest posts</h2>
+
+        </div>
+
+        <div class="content user-connected-posts">
+
+        </div>
+
+    </section>
+
+
+    <section class="section">
+
+        <div class="heading">
+
+            <h2 class="title connected-user-title">Here his <span class="other-user-title-username"></span> album</h2>
+
+        </div>
+
+        <div class="content user-connected-albums user-gallery">
+
+        </div>
+
+    </section>
+
+
+</div>
+
+<div class="modal photo-modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <!-- Any other Bulma elements you want -->
+    </div>
+    <button class="modal-close"></button>
+</div>
+
+
+
+<script src="dist/js/main.js"></script>
+<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+</html>

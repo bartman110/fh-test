@@ -1,0 +1,85 @@
+.gallery{
+
+    width: 100%;
+
+    .slick-list{
+      width: 100%;
+      margin: 0 auto;
+      @include tablet {
+        width: 85%;
+      }
+    }
+
+  .slick-arrow{
+    font-family: 'FontAwesome';
+    position: absolute;
+    left: 0;
+    top: 50%;
+
+    font-size: 0;
+
+    margin-top: -50px;
+
+    width: 15px;
+    height: 25px;
+
+    &:before{
+      display: block;
+
+      right: 0;
+      left: auto;
+
+      margin: 0 auto;
+
+      font-size: 20px;
+
+      width: 15px;
+      height: 25px;
+      min-width: 25px;
+    }
+  }
+
+  .slick-prev{
+    &:before{
+      content: "\f060";
+    }
+  }
+
+  .slick-next{
+    right: 0;
+    left: auto;
+
+    &:before{
+      content: "\f061";
+
+
+    }
+  }
+
+    .photo{
+
+      padding: 20px;
+      width: 100%;
+//      display: flex;
+
+
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @include tablet {
+        width: 50%;
+      }
+      @include desktop {
+        width: 25%;
+      }
+
+      img,
+      .open-photo-modal{
+
+        width: 100%;
+      }
+
+    }
+
+}
