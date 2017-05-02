@@ -9,28 +9,28 @@
 
 import $ from 'jquery';
 import slick from 'slick-carousel';
+
 import {findGetParameter} from './utils';
 
-
 const root = 'http://jsonplaceholder.typicode.com';
-let userFromLocal = JSON.parse(sessionStorage.getItem('user'));
 const otherUserId = findGetParameter('userid');
+let userFromLocal = JSON.parse(sessionStorage.getItem('user'));
 let userToLoad = userFromLocal;
 
-
-function listeToLogin(){
+function listenToLogin(){
     userFromLocal = JSON.parse(sessionStorage.getItem('user'));
     userToLoad = userFromLocal;
 }
 
 function displayConnectedUserInfo(){
 
-    $('.user-title-username').html(userFromLocal.username)
+    $('.user-title-username').html(userFromLocal.username);
+
 }
 
 function displayOtherUserInfo(otherUsername){
 
-    $('.other-user-title-username').html(otherUsername)
+    $('.other-user-title-username').html(otherUsername);
 }
 
 
@@ -111,6 +111,7 @@ function displayUserConnectedPosts(posts){
 
     $('.user-connected-posts').html(userPostsTemplate);
 
+    // initiate posts events
     viewPostComments();
     addPostComments();
     postComment();
@@ -129,9 +130,9 @@ function displayOtherUsers(users){
                 <div class="card-content">
                     <div class="media">
                         <div class="media-content">
-                            <p class="title is-4">${users[user].name}</p>
+                            <p class="title is-5">${users[user].name}</p>
                             <p class="subtitle is-6">${users[user].username}</p>
-                            <a href="/other-user.html?userid=${users[user].id}" class="subtitle button">View profile</a>
+                            <a href="./other-user.html?userid=${users[user].id}" class="subtitle button is-small">View profile</a>
                         </div>
                     </div>
                 </div>
@@ -210,7 +211,9 @@ function displayUserConnectedPhotos(album, photos){
             },
         ]
     });
+
     showPhotoModal();
+
 }
 
 
@@ -234,7 +237,9 @@ function displayCommentsForPost(postId, comments){
 
         userCommentsTemplate += template;
     }
+
     $('.message').find(`[data-post-comment='${postId}']`).html(userCommentsTemplate);
+
 }
 
 function viewPostComments(){
@@ -369,26 +374,30 @@ function postComment(){
         }
 
         $messageContainer.find('.input-body-comment, .input-name-comment, .input-email-comment').on('focus', function(){
-            $(this).removeClass('is-danger')
+            $(this).removeClass('is-danger');
             $messageContainer.find('.help').hide();
         })
-
-
-
     })
 }
 
+/*
+ * Initialize user content
+ *
+*/
+
 function getUserContent(){
 
-    listeToLogin();
+    listenToLogin();
     displayConnectedUserInfo();
-    listeToLogin();
 
+    // If viewing an other user profile
     if(otherUserId !== null) {
 
         $.ajax({
+
             url: root + `/users?id=${otherUserId}`,
             method: 'GET'
+
         }).then(function(data) {
 
             userToLoad = data[0];
@@ -397,8 +406,6 @@ function getUserContent(){
             getUserPosts();
             getOneUserAlbum(0);
             getOtherUsers();
-
-            return 'connected'
 
         });
 

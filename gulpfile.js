@@ -1,5 +1,5 @@
 const gulp        = require('gulp');
-var browserSync = require('browser-sync').create();
+const browserSync = require('browser-sync').create();
 
 const browserify  = require('browserify');
 const babelify    = require('babelify');
@@ -7,7 +7,6 @@ const source      = require('vinyl-source-stream');
 const buffer      = require('vinyl-buffer');
 const uglify      = require('gulp-uglify');
 const sourcemaps  = require('gulp-sourcemaps');
-const livereload  = require('gulp-livereload');
 
 const sass  = require('gulp-sass');
 

@@ -1,7 +1,16 @@
 .user-login-modal{
 
   .help.is-danger{
+
     display: none;
+
   }
 
+}
+
+.user-loggedin{
+  opacity: 0;
+  &.visible{
+    opacity: 1;
+  }
 }

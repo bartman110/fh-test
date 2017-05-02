@@ -12,9 +12,7 @@ import {getUserContent} from './user-content';
 
 let username = '';
 const $userLoginErrorField =  $('.user-login-error-field');
-
 const root = 'http://jsonplaceholder.typicode.com';
-
 
 function displayError(error){
     let errorText = '';
@@ -40,6 +38,7 @@ function registerUser(user){
 
 function connectUser(){
     $('.user-login-modal').hide();
+    $('.user-loggedin').addClass('visible');
 }
 
 

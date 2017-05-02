@@ -1,3 +1,16 @@
+.modal-content{
+  width: auto;
+  max-width: 100%;
+}
+
+.modal-card{
+  margin: 0 20px;
+
+  @include tablet{
+    margin: inherit;
+  }
+
+}
 .modal-card-title{
   flex-shrink: initial;
 }

@@ -4,4 +4,10 @@
     .card{
       width: 100%;
     }
+    .card-content{
+      padding: 15px;
+      .subtitle:not(:last-child){
+        margin-bottom: 10px;
+      }
+    }
 }
